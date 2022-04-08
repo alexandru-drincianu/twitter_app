@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'application#hello'
   get 'alta_ruta', to: 'application#alta_ruta'
-  
+  get 'create_user', to: 'application#create_user'
+  get 'main_menu', to:'application#main_menu'
 end
