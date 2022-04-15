@@ -1,0 +1,9 @@
+<% if @user.nil? %>
+    Nu exista user-ul cerut!
+<% else %>
+    name:           <%= @user.name%><br>
+    email:          <%= @user.email%><br>
+    age:            <%= @user.age%><br>
+    gender:         <%= @user.gender%><br>
+    phone_number:   <%= @user.phone_number%>
+<% end %>

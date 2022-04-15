@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     def hello 
-        render html: 'Hello World'
+        # render html: 'Hello World'
     end
 
     def alta_ruta
@@ -16,4 +16,5 @@ class ApplicationController < ActionController::Base
     def main_menu
         
     end
+
 end

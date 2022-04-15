@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   get 'alta_ruta', to: 'application#alta_ruta'
   get 'create_user', to: 'application#create_user'
   get 'main_menu', to:'application#main_menu'
+  get 'users', to:'users#index'
+  get 'users/:id', to:'users#show'
 end
