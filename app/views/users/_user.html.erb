@@ -1,0 +1,11 @@
+<div class="card user-card">
+  <div class="card-body">
+    <h5 class="card-title"><%= link_to(user.name,"/users/#{user.id}")%></h5>
+    <p class="card-text">
+        email:         <%= user.email%><br>
+        age:            <%= user.age%><br>
+        gender:         <%= user.gender%><br>
+        phone_number:   <%= user.phone_number%>
+    </p>
+  </div>
+</div>

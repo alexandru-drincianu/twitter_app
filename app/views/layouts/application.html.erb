@@ -10,6 +10,15 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+        <%= link_to 'Twitter', '/' , class:'navlink' %> | 
+        <%= link_to 'Users', '/users' , class:'navlink' %> | 
+        <%= link_to 'Contact', '/contact' , class:'navlink' %> |
+        <%= link_to 'Sign Up', '/users/new' , class:'navlink' %>
+        </div>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
