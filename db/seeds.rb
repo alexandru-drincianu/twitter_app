@@ -12,6 +12,7 @@ User.create(
     age: 22, 
     gender:"Male",
     phone_number:"0789127381"
+    password: 123
 )
 
 User.create(
@@ -20,6 +21,7 @@ User.create(
     age: 19, 
     gender:"Female",
     phone_number:"0713512566"
+    password: 123
 )
 
 User.create(
@@ -28,6 +30,7 @@ User.create(
     age: 17, 
     gender:"Male",
     phone_number:"0786321712"
+    password: 123
 )
 
 User.create(
@@ -36,6 +39,7 @@ User.create(
     age: 23, 
     gender:"Female",
     phone_number:"078872131"
+    password: 123
 )
 
 User.create(
@@ -44,4 +48,5 @@ User.create(
     age: 19, 
     gender:"Male",
     phone_number:"0725738123"
+    password: 123
 )

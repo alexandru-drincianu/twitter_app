@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
 
+    before_action :check_user, only: [:index, :show]
+
     def index
-        @users = User.all
+        if logged_in?
+            @users = User.all
+        else
+            redirect_to
+        end
     end
 
     def show
@@ -16,21 +22,35 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user = User.create(name:           params['user']['name'], 
-                            email:          params['user']['email'],
-                            age:            params['user']['age'],
-                            gender:         params['user']['gender'],
-                            phone_number:   params['user']['phone_number']
-        )       
+        #@user = User.create(name:           params['user']['name'], 
+        #                    email:          params['user']['email'],
+        #                   age:            params['user']['age'],
+        #                  gender:         params['user']['gender'],
+        #                 phone_number:   params['user']['phone_number']
+        #)       
+
+        @user = User.new(user_params)
 
         if @user.save
             flash[:success] = 'User has been created.'
-            redirect_to '/users/new'
-            # redirect_to "/users/#{user.id}"
+            log_in(@user)
+            redirect_to user_path(@user)
         else
-            flash[:error] = 'Registration failed'
-            redirect_to '/users/new'
+            render '/users/new'
         end
 
     end
+
+    private
+
+    def user_params
+        params.require(:user).permit(:name, :email,:age,:gender,:phone_number,:password)
+    end
+
+    def check_user
+        if !logged_in?
+            redirect_to login_path
+        end
+    end
+
 end

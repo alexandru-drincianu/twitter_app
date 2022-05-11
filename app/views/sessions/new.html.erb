@@ -8,32 +8,20 @@
 </svg>
 
 <body class="bg-dark">
-
-    <% if @user.errors.present? %>
+<% if flash[:error] %>
         <div class="alert alert-warning d-flex align-items-center" role="alert">
-                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-                <div>
-                    <%@user.errors.full_messages.each do |error| %>
-                        <%= error %>
-                    <% end %>
-                </div>
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Error:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div class="error"> <%= flash[:error] %></div>
         </div>
     <% end %>
 
     <div class ="card text-center bg-dark">
         <div class="card-header text-white">
-            <h1>Sign Up</h1>
+            <h1>Sign In</h1>
         </div>
         <div class="card-body">
-            <%= form_for @user do |f| %>
+            <%= form_with url:login_path do |f| %>
             <form>
-            <div class="mb-3">
-                <div class="text-center">
-                    <label class="form-label text-white font-weight-bold">Name</label><br>
-                    <%= f.text_field :name %>
-                </div>
-            </div>
-
             <div class="mb-3">
                 <div class="text-center">
                     <label class="form-label text-white font-weight-bold">Email</label><br>
@@ -48,29 +36,8 @@
                 </div>
             </div>
 
-            <div class="mb-3">
-                <div class="text-center">
-                    <label class="form-label text-white font-weight-bold">Age</label><br>
-                    <%= f.number_field :age %>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <div class="text-center">
-                    <label class="form-label text-white font-weight-bold">Gender</label><br>
-                    <%= f.select :gender, options_for_select([["Select One", ""], "Male", "Female", "Other"]) %>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <div class="text-center">
-                    <label class="form-label text-white font-weight-bold">Phone Number</label><br>
-                    <%= f.telephone_field :phone_number %>
-                </div>
-            </div>
-
             <div class="mb-3 text-center">
-                <%= f.submit 'Sign Up', :class => 'btn btn-info' %>
+                <%= f.submit 'Sign In', :class => 'btn btn-info' %>
             </div>
             </form>
             <% end %>

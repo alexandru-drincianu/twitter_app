@@ -6,18 +6,11 @@ Rails.application.routes.draw do
 
   root 'application#hello'
 
-  get 'alta_ruta', to: 'application#alta_ruta'
+  resources :users
 
-  get 'create_user', to: 'application#create_user'
+  get 'login', to:'sessions#new'
+  post 'login', to:'sessions#create'
+  get 'logout', to:'sessions#destroy'
 
-  get 'main_menu', to:'application#main_menu'
-
-  get 'users', to:'users#index'
-
-  get 'users/new', to:'users#new'
-
-  get 'users/:id', to:'users#show'
-
-  post 'users', to:'users#create'
 
 end
