@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   root 'application#hello'
 
   resources :users
+  resources :posts
 
   get 'login', to:'sessions#new'
   post 'login', to:'sessions#create'
-  get 'logout', to:'sessions#destroy'
+  delete 'logout', to:'sessions#destroy'
 
+  get 'admin/statistics', to:'users#showstatistics'
 
 end

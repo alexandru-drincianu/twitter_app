@@ -1,0 +1,16 @@
+<body class="bg-dark">
+    <h1>Users</h1>
+
+    <div class ="row">
+        <div class="col-md-4">
+            <h3 class="text-white">Users(<%=@users_regular.count%>)</h3>
+            <%= render @users_regular %>
+            <%= will_paginate(@users_regular, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, :param_name => 'regular_page', class: "pagination bg-transparent") %>
+        </div>
+        <div class="col-md-6">
+            <h3 class="text-white">Admins(<%=@users_admin.count%>)</h3>
+            <%= render @users_admin %>
+            <%= will_paginate(@users_admin, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, :param_name => 'admin_page', class: "pagination bg-transparent") %>
+        </div>
+    </div>
+</body>

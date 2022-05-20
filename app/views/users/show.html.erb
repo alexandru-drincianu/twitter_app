@@ -9,10 +9,21 @@
     <%= link_to('Back to users','/users') %>
     </button>
 
-    <% if @user.nil? %>
+
+
+    <div class ="row">
+        <div class="col-md-4">
+            <% if @user.nil? %>
         
-    <% else %>
-        <!--<%= render partial: 'user', locals: {user: @user}%>-->
-        <%= render @user%>
-    <% end %>
+            <% else %>
+                <!--<%= render partial: 'user', locals: {user: @user}%>-->
+                <%= render @user%>
+            <% end %>
+        </div>
+        <div class="col-md-6">
+        <h3 class="text-white">Posts(<%=@posts.count%>)</h3>
+        <%= render @posts%>
+        <%= will_paginate(@posts, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "pagination bg-transparent") %>
+        </div>
+    </div>
 </body>

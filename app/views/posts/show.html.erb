@@ -1,0 +1,11 @@
+<body class="bg-dark">
+    <button class="btn">
+    <%= link_to('Back to posts','/posts') %>
+    </button>
+
+    <% if @post.nil? %>
+        
+    <% else %>
+        <%= render @post%>
+    <% end %>
+</body>

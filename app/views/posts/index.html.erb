@@ -1,0 +1,10 @@
+<body class="bg-dark">
+    <h1>Posts</h1>
+    <ul class="list-group">
+    <% @posts.each do |post| %>
+        <li class="list-group-item bg-dark">
+        <%= render post%>
+        </li>
+    <% end %>
+    </ul>
+</body>
