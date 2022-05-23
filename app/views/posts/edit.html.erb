@@ -1,13 +1,5 @@
 <body class="bg-dark">
     <h1 class="text-white">Edit Post</h1>
     <%= render partial: 'shared/error_messages', locals: {obj: @post} %>
-    <%= form_with model:@post do |f| %>
-        <%=f.label :title, class:'form-label text-white font-weight-bold'%>
-        <%=f.text_field :title, class:'form-control'%>
-
-        <%=f.label :description, class:'form-label text-white font-weight-bold'%>
-        <%=f.text_field :description, class:'form-control'%>
-
-        <%= f.submit 'Edit', :class => 'btn btn-primary mt-2' %>
-    <% end %>
+    <%= render partial: 'shared/post_form', locals: {obj: @post} %>
 </body>

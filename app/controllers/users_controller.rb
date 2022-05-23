@@ -30,7 +30,7 @@ class UsersController < ApplicationController
             log_in(@user)
             redirect_to user_path(@user)
         else
-            render '/users/new'
+            render '/users/new', status: 422
         end
     
     end

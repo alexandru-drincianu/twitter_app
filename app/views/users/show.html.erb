@@ -18,15 +18,7 @@
                 <% if current_user?(@user) %>
                     <div class="p-3">
                         <%= render partial: 'shared/error_messages', locals: {obj: @post} %>
-                        <%= form_with model:@post do |f| %>
-                            <%=f.label :title, class:'form-label text-white font-weight-bold'%>
-                            <%=f.text_field :title, class:'form-control', placeholder: 'Insert title...'%>
-
-                            <%=f.label :description, class:'form-label text-white font-weight-bold'%>
-                            <%=f.text_field :description, class:'form-control', placeholder: 'Insert content...'%>
-
-                            <%= f.submit 'Post', :class => 'btn btn-primary mt-2' %>
-                        <% end %>
+                        <%= render partial: 'shared/post_form', locals: {obj: @post} %>
                 <% end %>
                 </div>
             <% end %>

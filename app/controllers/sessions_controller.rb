@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
             redirect_to user_path(user)
         else
             flash.now[:error] = 'Invalid credentials'
-            render :new
+            render 'new', status: 422
         end
 
     end

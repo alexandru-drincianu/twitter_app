@@ -1,10 +1,9 @@
 <body class="bg-dark">
-    <h1>Posts</h1>
+    <h1 class="text-white">Posts</h1>
     <ul class="list-group">
-    <% @posts.each do |post| %>
         <li class="list-group-item bg-dark">
-        <%= render post%>
+            <%= render @posts%>
         </li>
-    <% end %>
     </ul>
+    <%= will_paginate(@posts, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer, class: "pagination bg-transparent") %>
 </body>

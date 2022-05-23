@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
+    before_action :check_user, only: [:index, :show, :destroy, :edit, :update]
     def index
-        @posts = Post.all
+        @posts = Post.all.paginate(page: params[:page], per_page: 10)
     end
 
     def show
@@ -23,6 +24,7 @@ class PostsController < ApplicationController
 
     def edit
         @post = Post.find(params[:id])
+        redirect_to root_path unless @post.user == current_user
     end
 
     def update
