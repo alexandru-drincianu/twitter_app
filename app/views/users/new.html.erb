@@ -9,16 +9,7 @@
 
 <body class="bg-dark">
 
-    <% if @user.errors.present? %>
-        <div class="alert alert-warning d-flex align-items-center" role="alert">
-                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-                <div>
-                    <%@user.errors.full_messages.each do |error| %>
-                        <%= error %>
-                    <% end %>
-                </div>
-        </div>
-    <% end %>
+    <%= render partial: 'shared/error_messages', locals: {obj: @user} %>
 
     <div class ="card text-center bg-dark">
         <div class="card-header text-white">

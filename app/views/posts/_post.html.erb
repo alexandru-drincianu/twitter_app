@@ -3,7 +3,8 @@
     <h5 class="card-title"><%= link_to(post.title,post)%></h5>
     <p class="card-text">
         description:    <%= post.description%><br>
-        Posted by <%= link_to post.user.name, post.user %> <%= time_ago_in_words(post.created_at) %> ago
+        Posted by <%= link_to post.user.name, post.user %> <%= time_ago_in_words(post.updated_at) %> ago
     </p>
+    <%= link_to 'Edit', edit_post_path(post)%>
   </div>
 </div>
