@@ -5,5 +5,9 @@
     <%=f.label :description, class:'form-label text-white font-weight-bold'%>
     <%=f.text_field :description, class:'form-control', placeholder: 'Insert content...'%>
 
+
+    <%= f.label :picture, :class=>'form-label font-weight-bold text-white mt-3'%><br>
+    <%= f.file_field :picture, :class=>'text-white'%><br>
+
     <%= f.submit 'Post', :class => 'btn btn-primary mt-2' %>
 <% end %>

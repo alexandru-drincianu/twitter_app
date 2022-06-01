@@ -2,6 +2,7 @@ class PostsController < ApplicationController
     before_action :check_user, only: [:index, :show, :destroy, :edit, :update]
     def index
         @posts = Post.all.paginate(page: params[:page], per_page: 10)
+        @post = Post.new
     end
 
     def show
@@ -39,6 +40,6 @@ class PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:title, :description)
+        params.require(:post).permit(:title, :description, :picture)
     end
 end

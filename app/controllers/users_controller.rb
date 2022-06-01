@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    before_action :check_user, only: [:index, :show, :destroy, :showstatistics]
+    before_action :check_user, only: [:index, :show, :destroy, :showstatistics, :edit]
     before_action :admin_user, only: [:destroy, :update, :showstatistics]
 
     def index
@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
     def new
         @user = User.new
+        @title = "Registration form"
     end
 
     def create     
@@ -35,6 +36,22 @@ class UsersController < ApplicationController
     
     end
 
+    def edit
+        @title = "Edit user"
+        @user = User.find(params[:id])
+        redirect_to root_path unless @user == current_user
+    end
+
+    def update
+        @user = User.find(params[:id])
+
+        if @user.update(user_params)
+            redirect_to user_path(current_user)
+        else
+            render 'users/edit', status: 422
+        end
+    end
+
     def destroy
         @user = User.find(params[:id])
         @user.destroy
@@ -46,16 +63,30 @@ class UsersController < ApplicationController
         @users_admin = User.where(admin: true).paginate(page: params[:admin_page], per_page: 1)
     end
 
-    def update
+    def updateRole
         @user = User.find(params[:id])
         @user.update(admin: true)
         redirect_to admin_statistics_path
     end
 
+    def following
+        @title='Following'
+        @user = User.find(params[:id])
+        @users = @user.following.paginate(page: params[:page], per_page: 1)
+        render 'show_follow'
+    end
+
+    def followers
+        @title='Followers'
+        @user = User.find(params[:id])
+        @users = @user.followers.paginate(page: params[:page], per_page: 1)
+        render 'show_follow'
+    end
+
     private
 
     def user_params
-        params.require(:user).permit(:name, :email,:age,:gender,:phone_number,:password)
+        params.require(:user).permit(:name, :email,:age,:gender,:phone_number,:password,:avatar)
     end
 
 end

@@ -6,13 +6,23 @@ Rails.application.routes.draw do
 
   root 'application#hello'
 
-  resources :users
-  resources :posts
+  resources :users do
+    member do
+      get :following, :followers
+      patch :updateRole
+    end
+    collection do
+      #get : admins
+    end
+  end
+  
+  resources :posts do
+    resources :likes
+  end
 
   get 'login', to:'sessions#new'
   post 'login', to:'sessions#create'
   delete 'logout', to:'sessions#destroy'
 
   get 'admin/statistics', to:'users#showstatistics'
-
 end

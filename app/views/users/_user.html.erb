@@ -1,6 +1,9 @@
 <div class="card user-card bg-info", style="margin-left: 10px">
   <div class="card-body">
-    <h5 class="card-title"><%= link_to(user.name,"/users/#{user.id}")%></h5>
+    <% if user.avatar.attached? %>
+      <image src="<%= (url_for(user.avatar)) %>" class="img-thumbnail rounded mx-auto d-block">
+    <% end %>
+    <h5 class="card-title mt-5"><%= link_to(user.name,"/users/#{user.id}")%></h5>
     <p class="card-text">
         email:          <%= user.email%><br>
         age:            <%= user.age%><br>
@@ -9,7 +12,10 @@
     </p>
     <% if current_user.admin? && !current_user?(user) && !user.admin? %>
     <%= link_to 'Delete', user, data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class:'btn btn-danger' %>
-    <%= link_to 'Make Admin', user, data: {turbo_method: :patch, turbo_confirm: 'Are you sure?'}, class:'btn btn-warning' %>
+    <%= link_to 'Make Admin', updateRole_user_path(user), data: {turbo_method: :patch, turbo_confirm: 'Are you sure?'}, class:'btn btn-warning' %>
+    <% end %>
+    <% if current_user?(user) %>
+      <%= link_to 'Edit', edit_user_path(user), class: "btn btn-dark"%>
     <% end %>
   </div>
 </div>

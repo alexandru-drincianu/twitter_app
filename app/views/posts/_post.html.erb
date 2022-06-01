@@ -1,12 +1,35 @@
 <div class="card user-card bg-info", style="margin-left: 10px">
   <div class="card-body">
     <h5 class="card-title"><%= link_to(post.title,post)%></h5>
+    <% if post.picture.attached? %>
+      <image src="<%= (url_for(post.picture)) %>" class="img-fluid" alt="Responsive image">
+    <% end %>
     <p class="card-text">
         description:    <%= post.description%><br>
-        Posted by <%= link_to post.user.name, post.user %> <%= time_ago_in_words(post.updated_at) %> ago
+        Posted by <%= link_to post.user.name, post.user %> <%= time_ago_in_words(post.updated_at) %> ago <br>
+        <%= post.likes.count %> Likes
     </p>
-    <% if current_user?(post.user) %>
-      <%= link_to 'Edit', edit_post_path(post), class: "btn btn-dark"%>
-    <% end %>
+    <div class="btn-toolbar">
+
+     <div class="btn-group mr-5">
+        
+
+      <% pre_like = post.likes.find { |like| like.user_id == current_user.id} %>
+        <% if pre_like %>
+          <%= button_to 'Unlike', post_like_path(post, pre_like), method: :delete, class:'btn btn-danger' %>
+        <% else %>
+          <%= button_to 'Like', post_likes_path(post), data: {turbo_method: :post}, class:'btn btn-primary' %>
+        <% end %>
+ 
+     </div>
+
+     <div class="btn-group ml-5">
+        <% if current_user?(post.user) %>
+          <%= link_to 'Edit', edit_post_path(post), class: "btn btn-dark"%>
+        <% end %>
+     </div>
+
+    </div>
+    
   </div>
 </div>
