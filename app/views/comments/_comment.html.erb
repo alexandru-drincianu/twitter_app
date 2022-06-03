@@ -1,0 +1,24 @@
+<div class="row d-flex justify-content-left mt-100 mb-100">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body text-center">
+            </div>
+            <div class="comment-widgets">
+                <div class="d-flex flex-row comment-row m-t-0">
+                    <div class="p-2"><img src="<%= (url_for(comment.user.avatar)) %>" alt="user" width="50" class="rounded-circle"></div>
+                    <div class="comment-text w-100">
+                        <h6 class="font-medium"><%= comment.user.name %></h6> 
+                        <span class="m-b-15 d-block"> <%= comment.content %> </span>
+                        <div class="comment-footer"> <span class="text-muted float-right"><%= time_ago_in_words(comment.updated_at) %> ago <br></span> 
+                        <span>
+                            <% if current_user?(comment.user) %>
+                                <%= link_to 'Edit', edit_post_comment_path(comment.post_id,comment)%>
+                                <%= link_to 'Delete', post_comment_path(comment.post_id, comment), method: :delete, data: {turbo_method: :delete}%>
+                            <% end %> 
+                        </span>
+                    </div>
+                </div> 
+            </div> 
+        </div>
+    </div>
+</div>

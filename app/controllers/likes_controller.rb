@@ -1,5 +1,7 @@
 class LikesController < ApplicationController
 
+    before_action :check_user, only: [:create, :destroy]
+
     def create
 
         @post = Post.find(params[:post_id])
@@ -9,12 +11,12 @@ class LikesController < ApplicationController
         else
           @post.likes.create(user_id: current_user.id)
         end
-        redirect_to posts_path
+        redirect_to request.referrer
 
     end
 
     def destroy
-        
+      
         @post = Post.find(params[:post_id])
         @like = @post.likes.find(params[:id])
 
@@ -23,7 +25,7 @@ class LikesController < ApplicationController
         else
           @like.destroy
         end
-        redirect_to posts_path
+        redirect_to request.referrer
     end
 
 

@@ -17,6 +17,7 @@ class User < ApplicationRecord
     has_many :followers, through: :followed_relationships, source: :follower
 
     has_many :likes, dependent: :destroy
+    has_many :comments, dependent: :destroy
 
     has_one_attached :avatar
 

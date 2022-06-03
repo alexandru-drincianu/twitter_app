@@ -6,7 +6,8 @@ class Post < ApplicationRecord
   validates :description, presence: true,  length: { maximum: 120 }
 
   has_one_attached :picture
-  
+
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
 end

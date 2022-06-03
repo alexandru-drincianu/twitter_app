@@ -3,9 +3,11 @@ class PostsController < ApplicationController
     def index
         @posts = Post.all.paginate(page: params[:page], per_page: 10)
         @post = Post.new
+        @comment = Comment.new
     end
 
     def show
+        @comment = Comment.new
         @post = Post.where(id: params[:id]).first
         if @post.nil? 
             redirect_to '/posts'

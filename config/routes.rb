@@ -15,9 +15,10 @@ Rails.application.routes.draw do
       #get : admins
     end
   end
-  
+
   resources :posts do
     resources :likes
+    resources :comments
   end
 
   get 'login', to:'sessions#new'

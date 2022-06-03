@@ -1,0 +1,5 @@
+<%= form_with(model: [obj, obj.comments.build]) do |f| %>
+    <%=f.text_field :content, class:'form-control', placeholder: 'Insert comment'%>
+
+    <%= f.submit 'Post', :class => 'btn btn-primary mt-2' %>
+<% end %>

@@ -1,0 +1,7 @@
+<body class="bg-dark">
+    <h1 class="text-white">Edit Comment</h1>
+    <%= form_with model:[@post, @comment] do |f| %>
+        <%=f.text_field :content, class:'form-control', placeholder: 'Insert comment'%>
+    <%= f.submit 'Post', :class => 'btn btn-primary mt-2' %>
+<% end %>
+</body>
